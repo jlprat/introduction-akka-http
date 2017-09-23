@@ -1,0 +1,11 @@
+.clear-image, .clear-image h2, .clear-image h1 {
+    color: #de341d;
+}
+
+.slide-background.clear-image {
+    filter: grayscale(100%);
+}
+
+.reveal li code {
+    color: #ffabab;
+}

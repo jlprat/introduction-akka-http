@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/league.css">
+    <link rel="stylesheet" href="css/custom.css">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -36,7 +37,7 @@
             <script type="text/template">
                 # Introduction to Akka HTTP
 
-                ## Scala Berlin Brandenburg User Group
+                ## Scala Berlin Brandenburg UG
                 <img src="images/logo-springernature.svg" alt="SpringerNature" style="border: 0; background-color: white; padding: 10px;">
                 * * *
                 ###### 25/09/2017 - Josep Prat - [@jlprat](https://github.com/jlprat)
@@ -103,9 +104,9 @@
 
                 ```
                 new HttpApp {
-                override protected def route: Route = path("hello") {
-                complete("world!")
-                }
+                    override protected def routes: Route = path("hello") {
+                        complete("world!")
+                    }
                 }.startServer("localhost", 9000)
                 ```
             </script>
@@ -133,10 +134,10 @@
             <script type="text/template">
                 ## Word about Streams
 
-                - Built on top of Actors
-                - Unbounded data
-                - Source -> Flow -> Sink
-                - Back pressure
+                 - Built on top of Actors
+                 - Unbounded data
+                 - `Source` -> `Flow` -> `Sink`
+                 - Back pressure
             </script>
         </section>
         <section data-markdown>
@@ -146,81 +147,13 @@
                 - Never block
                 - Never block
                 - Never block
-                - If you must, block in another Thread Pool
+                - If you must, block in a separated Thread Pool
             </script>
         </section>
-
-        <section data-markdown>
+        <section data-markdown class="clear-image" data-background="https://static.pexels.com/photos/7014/stream-river-sonja-langford.jpg">
             <script type="text/template">
                 # Hands On with Demos
             </script>
-        </section>
-        <section data-markdown>
-            <script type="text/template">
-                ## Understanding the Model
-
-                ### HttpRequest:
-                - Method
-                - Uri
-                - Headers
-                - Entity
-                - Protocol
-            </script>
-        </section>
-        <section data-markdown>
-            <script type="text/template">
-                ## Understanding the Model
-
-                ### HttpResponse:
-                - Status Code
-                - Headers
-                - Entity
-                - Protocol
-            </script>
-        </section>
-        <section>
-            <section data-markdown>
-                <script type="text/template">
-                    ## Understanding the Model
-
-                    ### Entity:
-                    - Data Bytes
-                    - Content Type
-                    - Content Length (if known)
-
-                    _Due to the streaming nature of Akka HTTP, there are different kinds of Entities._
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ## Understanding the Model
-                    - Strict
-                        - All bytes in memory
-                        - Entity is small
-                    - Default
-                        - Streamed
-                        - Data comes from Stream and length is known
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ## Understanding the Model
-                    - Chunked
-                        - Streamed as chunks
-                        - Data comes in chunks from Stream and length is unkown
-                    - CloseDelimited
-                        - Streamed implicitly delimited by closing the connection
-                        - Use for legacy systems
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ## Understanding the Model
-                    - IndefiniteLength
-                        - Streamed
-                        - To use in `Multipart.Bodypart` and unknown length
-                </script>
-            </section>
         </section>
         <section data-markdown>
             <script type="text/template">
@@ -245,10 +178,10 @@
                 ## Routes and Directives
 
                 Types of Directives:
-                - Transforming: They modify the request before passing it to its inner route
-                - Filtering: They only pass requests that satisfy certain conditions and reject the others
-                - Extracting: They provide some value to its inner route or reject otherwise
-                - Completing: They complete a request (successfully or not)
+                - Transforming
+                - Filtering
+                - Extracting
+                - Completing
             </script>
         </section>
         <section data-markdown>
@@ -256,16 +189,14 @@
                 ## Composing Directives 101
 
                 - Nesting
-                - Side-by-side (`Route.concat` or `~` || `orElse` or `RouteDirectives.route`)
+                - Side-by-side (`Route.concat` or `~`)
             </script>
         </section>
-        <section data-markdown>
+        <section data-background="https://cdn.pixabay.com/photo/2016/08/30/16/09/matrioska-1631194_960_720.jpg">
+        </section>
+        <section data-markdown class="clear-image" data-background="https://cdn.pixabay.com/photo/2017/08/02/10/54/hands-2570889_960_720.jpg">
             <script type="text/template">
                 ## Hands On!
-
-                [Directives By Trait:Scala](http://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/directives/by-trait.html)
-
-                [Directives By Trait:Java](http://doc.akka.io/docs/akka-http/current/java/http/routing-dsl/directives/by-trait.html)
             </script>
         </section>
         <section data-markdown>
@@ -273,16 +204,45 @@
                 ## Path Matchers
 
                 Match against simple strings, or complex matchers extracting the matched value.
-                Useful ones:
-                - `Segment`
-                - `IntNumber`, `LongNumber`...
-                - `PathEnd`
-                - "foo" / "bar" (obviously only in Scala)
+                ```
+                path("path") {
+                    ...
+                }
+                ```
             </script>
         </section>
         <section data-markdown>
             <script type="text/template">
+                Useful ones:
+                - `Segment`
+                - `IntNumber`, `LongNumber`...
+                - `PathEnd`
+                - `"foo" / "bar"`
+            </script>
+        </section>
+        <section data-markdown class="clear-image" data-background="https://cdn.pixabay.com/photo/2017/08/02/10/54/hands-2570889_960_720.jpg">
+            <script type="text/template">
                 ## Hands on!
+            </script>
+        </section>
+        <section data-markdown>
+            <script type="text/template">
+                ## Understanding the Model
+                ### HttpRequest
+                ### HttpResponse
+                ### Entity
+
+                _Due to the streaming nature of Akka HTTP, there are different kinds of Entities._
+            </script>
+        </section>
+        <section data-markdown>
+            <script type="text/template">
+                ## Understanding the Model
+                - `Strict`
+                - `Default`
+                - `Chunked`
+                - `CloseDelimited`
+                - `IndefiniteLength`
             </script>
         </section>
         <section data-markdown>
@@ -308,14 +268,19 @@
                 ```
             </script>
         </section>
+        <section data-markdown class="clear-image" data-background="https://cdn.pixabay.com/photo/2017/08/02/10/54/hands-2570889_960_720.jpg">
+            <script type="text/template">
+                ## Hands On!
+            </script>
+        </section>
         <section data-markdown>
             <script type="text/template">
                 ## Deal with Rejections
 
-                - Produced when a route can't be handled
-                - This doesn't necessarily mean the request will be unhandled
-                - Will try with the next route
-                - "Error" response if no route can handle the request
+                - A `Route` can't handle a `Request`
+                - `Rejection` != Error `Response`
+                - Will try with the next `Route`
+                - Error `Response` if no `Route` can handle the `Request`
             </script>
         </section>
         <section data-markdown>
@@ -332,26 +297,32 @@
                   }
                 }
                 ```
+                ```
+                $> curl -X POST localhost:9000/foo
+                post foo
+                $> curl -X DELETE localhost:9000/foo
+                HTTP method not allowed, supported methods: GET, POST
+                ```
             </script>
         </section>
         <section data-markdown>
             <script type="text/template">
                 ## Personalizing Rejections
 
-                - Create your own `RejectionHandler` to handle specific rejections in a different way
-                - There is a default `RejectionHandler`
-                - It handles all Akka HTTP rejections (with conventional defaults)
+                - Via own `RejectionHandler`
+                - Default `RejectionHandler` already provided
+                - It handles all Akka HTTP `Rejection`
             </script>
         </section>
         <section data-markdown>
             <script type="text/template">
                 ## Handling Exceptions
 
-                - Sometimes exceptions are thrown
-                - Create your own `ExceptionHandler` to personalize errors
+                - In case you throw exceptions...
+                - Use own `ExceptionHandler` to personalize errors
             </script>
         </section>
-        <section data-markdown>
+        <section data-markdown class="clear-image" data-background="https://cdn.pixabay.com/photo/2017/08/02/10/54/hands-2570889_960_720.jpg">
             <script type="text/template">
                 ## Hands on!
             </script>
@@ -360,9 +331,9 @@
             <script type="text/template">
                 ## Dealing with Blocking
 
-                - Blocking operations are really bad, especially when using Akka HTTP
-                - They block the same `Dispatcher` used to process incoming requests
-                - Blocking code can bring down your whole Server
+                - Never block
+                - Blocking operations prevent the `Dispatcher` to process incoming requests
+                - They can drag your whole server down!
             </script>
         </section>
         <section data-markdown>
@@ -370,11 +341,11 @@
                 ## Dealing with Blocking
 
                 - Isolate blocking code in a dedicated `Dispatcher`
-                - Wrap them inside a `Future` (that uses the mentioned `Dispatcher`)
+                - Wrap it inside a `Future`
                 - Main `Dispatcher` is always ready to handle incoming requests
             </script>
         </section>
-        <section data-markdown>
+        <section data-markdown class="clear-image" data-background="https://cdn.pixabay.com/photo/2017/08/02/10/54/hands-2570889_960_720.jpg">
             <script type="text/template">
                 ## Hands on!
             </script>
