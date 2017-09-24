@@ -17,11 +17,11 @@ class PathExample extends HttpApp {
         }
       )
     } ~
-    path("other") {
-      get {
-        complete("other path")
+      path("other") {
+        get {
+          complete("other path")
+        }
       }
-    }
   }
 }
 

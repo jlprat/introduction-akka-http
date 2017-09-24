@@ -23,7 +23,7 @@ class BookStore extends HttpApp with BookJsonSupport {
     .handleNotFound(complete(StatusCodes.NotFound, "Nothing to see here!"))
     .result()
 
-  private val exceptionHandler = ExceptionHandler.apply{
+  private val exceptionHandler = ExceptionHandler.apply {
     case _: ArithmeticException => complete(StatusCodes.InternalServerError, "Do you math?")
   }
 
