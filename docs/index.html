@@ -86,6 +86,8 @@
                 - Wrap Up
             </script>
         </section>
+        <section data-background-color="#15a9ce" data-background-size="contain" data-background-image="images/akka_reverse.svg">
+        </section>
         <section data-markdown>
             <script type="text/template">
                 ## What is Akka HTTP?
@@ -328,9 +330,9 @@
         <section data-markdown>
             <script type="text/template">
                 ## Understanding the Model
-                ### HttpRequest
-                ### HttpResponse
-                ### Entity
+                - HttpRequest
+                - HttpResponse
+                - Entity
 
                 _Due to the streaming nature of Akka HTTP, there are different kinds of Entities._
             </script>
@@ -350,7 +352,7 @@
                 ## Consuming HTTP
 
                 - Akka HTTP has also a stream-first client to consume HTTP based services
-                - The easiest (for me) mode to use the client is the `Future` based one
+                - The easiest (IMO) mode is the `Future` based one
                 - It turns an `HttpRequest` into a `Future[HttpResponse]`
             </script>
         </section>
@@ -383,9 +385,12 @@
                 - Natural Actor integration
             </script>
         </section>
+        <section class="light-color" data-background="images/questions.jpeg">
+        </section>
         <section data-markdown>
             <script type="text/template">
                 ## Useful Links
+                - [Spray-Json](https://github.com/spray/spray-json)
                 - [Heiko's Akka HTTP Json Library](https://github.com/hseeberger/akka-http-json)
                 - [Akka Streams & Reactive Streams in Action](https://www.youtube.com/watch?v=x62K4ObBtw4&index=19&list=PLLMLOC3WM2r4aQCKJxxPlrEhJ8tdGWjXj)
                 - [Effective Akka HTTP](https://www.youtube.com/watch?v=uxQta776jJI)
@@ -393,7 +398,7 @@
         </section>
         <section data-markdown>
             <script type="text/template">
-                ## Useful Links
+                ## Akkka HTTP Links
 
                 [Github](https://github.com/akka/akka-http)
 
@@ -403,11 +408,6 @@
 
                 [User Group](https://groups.google.com/forum/#!forum/akka-user)
 
-            </script>
-        </section>
-        <section data-markdown>
-            <script type="text/template">
-                # Questions?
             </script>
         </section>
         <section data-markdown>
