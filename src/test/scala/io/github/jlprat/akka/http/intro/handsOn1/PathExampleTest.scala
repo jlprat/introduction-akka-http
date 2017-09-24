@@ -7,7 +7,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class PathExampleTest extends FlatSpec with ScalatestRouteTest with Matchers {
 
-  behavior of "PathExample"
+  behavior of "PathExample Server"
   private val routesToTest = new PathExample().routes
 
 
