@@ -10,7 +10,6 @@ libraryDependencies ++= Seq(
   // akka http
   "com.typesafe.akka" %% "akka-http"            % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
-  "com.typesafe.akka" %% "akka-http-jackson"    % akkaHttpVersion,
 
   // testing
   "com.typesafe.akka" %% "akka-http-testkit"    % akkaHttpVersion % "test",
