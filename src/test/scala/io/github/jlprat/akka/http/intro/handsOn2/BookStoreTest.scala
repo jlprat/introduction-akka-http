@@ -20,7 +20,7 @@ class BookStoreTest extends FlatSpec with ScalatestRouteTest with Matchers with 
   }
 
   it should "reply with empty response if book doesn't exist" in {
-    Get("/book/2") ~> routesToTest ~> check {
+    Get("/book/4") ~> routesToTest ~> check {
       status shouldBe StatusCodes.OK
       responseAs[String] shouldBe ""
     }
@@ -56,7 +56,7 @@ class BookStoreTest extends FlatSpec with ScalatestRouteTest with Matchers with 
     Put("/book", (3, "Looks Like a Book")) ~> Route.seal(routesToTest) ~> check {
       status shouldBe StatusCodes.BadRequest
     }
-    
+
     Put("/book") ~> Route.seal(routesToTest) ~> check {
       status shouldBe StatusCodes.BadRequest
     }
